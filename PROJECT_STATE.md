@@ -14,6 +14,6 @@ QA: backend routes/import/config, deterministic/unique records, catalog referenc
 
 Scientific state: SIMULATION ONLY. All numeric UI values derive from synthetic rows; taxonomy and labels are illustrative, no Macro-F1 or true ages. Brief size 434,463 is separately attributed in methodology. Source data, models, gold labels, topic outputs and evaluation evidence remain missing. Original PPT excluded and unchanged.
 
-Release: commit/push only after final verification. Live commit must match `/api/status.version` before claiming updated production. Render CLI/authenticated browser unavailable; use public HTTP/browser verification. Internal service ID and dashboard Auto-Deploy setting not directly inspectable.
+Release: application `78d9aa87daa5dec3c826a86d2f09f4a4b5ab1fd4` committed, merged and pushed to origin/main; public `/api/status.version` matched. Verified LIVE at 2026-11-11T15:24:20+00:00: root, health, APIs and all assets HTTP 200; public browser three-click flow, synthetic ID references, filter/heatmap propagation and reset passed without errors. A documentation-only handoff follows this application release. Deployment occurred after push without a manual Render action by the agent; internal service ID and exact dashboard Auto-Deploy setting remain uninspected.
 
-Next boundary: verify 2.0 at the stable public URL, then rehearse DEMO_SCRIPT.md. Future scientific improvement is independently validated source outputs; never treat synthetic differences as MBG findings.
+Next boundary: rehearse DEMO_SCRIPT.md on the stable public URL. The interactive simulation is ready; all genuine scientific results remain unavailable. Future scientific improvement is independently validated source outputs; never treat synthetic differences as MBG findings.

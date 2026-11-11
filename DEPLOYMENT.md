@@ -13,6 +13,12 @@
 
 **Reuse this service. Never delete/recreate it, alter the hostname or enable a paid instance.**
 
+## Verified 2.0 application release
+
+Verified at `2026-11-11T15:24:20+00:00`: application commit `78d9aa87daa5dec3c826a86d2f09f4a4b5ab1fd4` is LIVE at the stable URL. Public root, health, status/data APIs, CSS and both JS assets returned HTTP 200. Browser smoke verified six groups, eight topics, 48 matrix cells, persistent simulation disclosure and locked real mode; Gen Z → menu → Non-individual displayed the computed +19.8 pp scenario gap. Combined Instagram/August filtering, matrix-to-evidence matching IDs, guide and reset passed with no console errors. Public screenshots and report are retained locally under `evidence/v2/` (not published).
+
+The deployment followed the GitHub main push without a manual Render action by this agent. This verifies automatic deployment behavior for this release; the precise dashboard setting and internal service ID remain uninspected. A subsequent documentation-only handoff commit may be newer than the application release above; no application files change in that handoff.
+
 ## Configuration retained
 
 | Field | Value |
