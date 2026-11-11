@@ -1,34 +1,46 @@
-# Demo 60 detik — PETA SUARA MBG
+# Demo 60 detik — PETA SUARA MBG 2.0
 
-Status: interactive **preview**, not a demonstration of completed classification or topic-modeling results. No numerical analytical finding is available. The script deliberately presents a workflow and its evidence gates.
+**Demo interaktif dengan data sintetis. Bukan hasil analisis lomba.**
 
-Transition from PPT slide 13: “Berikut prototipe interaktif dari rancangan radar tadi. Status bukti ditampilkan langsung agar rencana metode tidak tertukar dengan hasil.”
+URL: https://peta-suara-mbg.onrender.com/
 
-Before starting: open the **existing submitted Render URL**, allow its cold start, ensure the new dashboard is loaded. Use a laptop/projector at 1366×768 or 1920×1080. Browser zoom 100%. Close the methods panel, leave the group unselected and comparison B at “Pilih pembanding” (reload if needed). The three primary actions below work without the optional guide. At 1366×768, scroll slightly after opening/closing the evidence panel to reveal the comparison footer if needed.
+Persiapan: buka URL sebelum giliran presentasi agar cold start selesai. Gunakan layar laptop/proyektor 1366×768 atau lebih besar, zoom 100%. Klik **Mulai Demo 60 Detik**: filter direset, tampilan masuk mode presentasi, panduan menyorot tiga area. Tidak ada autoplay atau batas waktu paksa. Semua kontrol tetap berbasis klik. Jika panduan tidak diperlukan, klik **Reset semua** dan gunakan dashboard biasa.
 
-| Time | Exact presenter dialogue | Exact action | Expected response |
-|---|---|---|---|
-| 00–10 | “Brief memuat 434 ribu komentar MBG dari tiga platform. Tantangannya: suara siapa yang terdengar? Angka ini ukuran dataset dalam brief, bukan jumlah yang sudah kami proses.” | Point to context and six groups. | 434.463 labeled “komentar dalam brief”; processed count is unavailable. |
-| 10–22 | “Klik Gen Z: ini salah satu dari enam target klasifikasi. Generasi adalah estimasi dari teks, bukan identitas penulis. Prediksi belum dimuat, jadi proporsi belum ditampilkan.” | **Click 1: Gen Z.** | Selection, topic context, comparison A all show Gen Z. No invented distribution appears. |
-| 22–36 | “Klik keamanan pangan. Ini hipotesis dari PPT, bukan temuan. Panel menunjukkan pertanyaan verifikasi dan sumber yang perlu dicek. Kutipan asli baru ditampilkan setelah ID sumber tersedia.” | **Click 2: Keamanan pangan.** Then press **Escape**. | Drawer shows Dinkes / audit SOP SPPG, exact PPT source, missing comment evidence, and no fabricated quote. Focus returns to the topic button. |
-| 36–49 | “Bandingkan dengan Non-individual. Tujuannya melihat porsi topik di masing-masing kelompok. Tanpa prediksi dan topik terverifikasi, sistem menahan perhitungan, bukan mengarang selisih.” | **Click 3: select Non-individual in Kelompok B**. | Pair label and unavailable state. Optional: expand “Cara membaca perbandingan” to disclose denominator. |
-| 49–60 | “Nilainya adalah alur dari percakapan ke pertanyaan yang dapat diverifikasi. Prototipe ini siap dihubungkan ke keluaran analisis; kesimpulan kebijakan tetap membutuhkan bukti tambahan.” | Point to “SO WHAT”; optionally click **Lihat kesiapan bukti**. | Evidence-readiness table and methodology reveal what exists and what is missing. |
+Transisi PPT: “Ini wujud interaktif dari radar percakapan yang kami rancang. Malam ini kami memperagakan fiturnya dengan data sintetis, bukan mengklaim hasil riset.”
 
-Spoken portion is approximately 130 words plus three short interactions; rehearse once at normal pace. Do not read the table's response column aloud. The guide is optional, manually advanced, and does not auto-play or assert a timer. “Mulai demo 60 detik” highlights WHO → WHAT → CONTRAST → methods; choose “Lanjut” after each action and “Selesai” or “Keluar demo” to end. Escape also exits the guide when the evidence dialog is closed.
+| Waktu | Dialog presenter (ucapkan persis atau hafalkan maknanya) | Klik / respons yang terlihat |
+|---|---|---|
+| 00–10 | “Ini Peta Suara MBG. Demo berisi seribu delapan puluh komentar sintetis, bukan hasil analisis lomba. Kita bisa menelusuri siapa, topik, dan perbedaan prioritas.” | Tunjuk label simulasi yang tetap terlihat. Panduan tahap 1 sudah aktif. |
+| 10–22 | “Saya pilih Gen Z. Peringkat topik langsung berubah. Dalam skenario ini, menu paling menonjol. Label kelompoknya juga simulasi, bukan usia penulis yang diketahui.” | **Klik analitis 1: Gen Z.** Panel menunjukkan 286 komentar; menu 89 komentar / 31,1%. Klik **Lanjut** jika memakai panduan. |
+| 22–36 | “Klik menu, kita bisa membaca contoh pembentuk angkanya. Setiap komentar punya ID sintetis, platform, dan tanggal. Pilihan platform atau bulan akan menyaring contoh yang sesuai.” | **Klik analitis 2: Mutu & variasi menu.** Dialog membuka contoh SIM-ID dari dataset. Tutup dengan **×** atau Escape. Klik **Lanjut** untuk tahap 3. |
+| 36–49 | “Sekarang bandingkan dengan Non-individual. Porsi menu berbeda sekitar dua puluh poin persentase. Selisih ini benar dihitung dari data demo, tetapi bukan temuan tentang masyarakat.” | **Klik analitis 3: Bandingkan dengan Non-individual.** Grafik menunjukkan Gen Z 31,1% vs Non-individual 11,3%; selisih +19,8 pp, pembeda terbesar dalam skenario. |
+| 49–60 | “Alurnya membantu menyusun pertanyaan evaluasi: apa yang perlu diperiksa, dan ke sumber mana? Untuk kesimpulan nyata, kami tetap membutuhkan inferensi tervalidasi dan bukti tambahan.” | Tunjuk perbandingan dan label simulasi. Klik **Selesai**. Bila ada waktu lanjutan, buka **Peta topik** lalu klik sel heatmap untuk menelusuri kelompok dan topik sekaligus. |
 
-## Safe fallback
+Sekitar 130–140 kata, ditambah jeda tiga interaksi. Latih sekali sebelum tampil. Angka di atas berlaku untuk seed `190726`, seluruh platform dan Juli–September, tanpa pencarian. Jangan memakai angka naskah setelah filter diubah. Panduan tidak berpindah sendiri: **Kembali**, **Lanjut**, **Ulangi**, **×** tersedia; **Lihat area** menggulir hanya atas klik presenter.
 
-- **Public release not verified:** state that it is a local prototype; do not claim the submitted URL has the new version. Run `.venv/bin/gunicorn --bind 127.0.0.1:5067 app:app` and open `http://127.0.0.1:5067/` on the presenter's own machine only if the repository and dependencies are already there. It cannot be opened on a different laptop via that localhost address.
-- **Render still starting:** wait before beginning the timed demo. Keep the PPT visible. Do not repeatedly create services or change hostname.
-- **No JavaScript:** context, six target categories and native expandable methods remain readable. Explain that interactivity is unavailable; do not describe a click as having produced data.
-- **No analytics artifacts:** use the script above unchanged. Never call hypotheses ranked topics, never call 434,463 processed records, and never claim an age, confidence, F1, or policy effect.
-- **Dialog stuck:** press Escape or the visible “Tutup ×” button. Tab remains within the native modal.
+## Jika juri ingin mencoba
 
-## Three likely jury questions
+- Filter **Instagram → Agustus 2026**, pilih kelompok, lalu klik satu topik. Semua kartu, penyebut, heatmap dan perbandingan ikut menghitung ulang.
+- Klik sel heatmap: kelompok dan topik dipilih bersamaan, contoh di **Di balik angka** berubah.
+- Gunakan **← / →** untuk contoh lain, **Lihat 5 contoh**, pencarian, atau **Salin ID**.
+- **Unduh ringkasan sintetis** menghasilkan CSV dengan provenance sintetis, seed, filter, jumlah dan penyebut.
+- **Tentang data** menjelaskan perbedaan 1.080 komentar demo dengan 434.463 komentar menurut brief. Mode hasil riil terkunci.
 
-1. **“Bisakah usia penulis diketahui hanya dari teks?”**
-   Tidak secara andal. Targetnya estimasi kategori, bukan identitas. Bahkan Macro-F1 pada label manusia akan mengukur kesesuaian anotasi, bukan kebenaran usia. Ketidakpastian dan potensi bias platform harus dinyatakan.
-2. **“Mana hasil model dan skor Macro-F1?”**
-   Belum ada artefak model, gold set, prediksi atau evaluasi dalam project yang dapat diverifikasi. PPT menyajikan rencana perbandingan model. Kami tidak menampilkan skor sebelum ada evaluasi terpisah dan bukti yang dapat diaudit.
-3. **“Apa yang dibutuhkan agar perbandingan kelompok sah?”**
-   Prediksi dengan ID unik, satu peta topik global yang sama, serta jumlah komentar per kelompok dan penugasan topiknya. Porsi memakai seluruh komentar berprediksi di kelompok, termasuk yang belum mendapat topik; selisih dalam poin persentase. Perlu audit cakupan, duplikasi, bias platform, dan ketidakpastian sebelum interpretasi kebijakan.
+## Fallback yang aman
+
+- **Tidak muncul data pada filter sempit:** ini dapat berarti nol baris pada kombinasi tersebut. Klik Reset semua; jangan menyebut nol sebagai hasil penelitian.
+- **Pencarian tidak cocok:** Hapus pencarian pada empty state, atau Reset semua.
+- **Dialog perlu ditutup:** × tetap di bagian atas; Escape juga bekerja. Menutup contoh tidak mengakhiri panduan.
+- **Kontrol panduan bermasalah:** keluar, Reset semua dan lakukan tiga klik utama tanpa panduan.
+- **Server cold start / jaringan:** tunggu sebelum mulai menghitung 60 detik. Kembali ke PPT sementara. Jangan membuat service baru atau mengubah URL.
+- **JavaScript mati:** UI memberi penjelasan dan tautan dataset berlabel; jangan mengklaim interaksi telah bekerja. Aktifkan JavaScript dan muat ulang.
+- **Rollback / versi lama:** cek `/api/status`, harus `mode: synthetic`, `synthetic_count: 1080`. Jika halaman lama masih terlihat, muat ulang dan cek Render. Gunakan lokal hanya jika aplikasi memang dijalankan di laptop presenter; localhost bukan tautan publik.
+
+## Tiga pertanyaan sulit juri
+
+1. **“Apakah perbedaan Gen Z dan Non-individual ini hasil penelitian?”**
+   Bukan. Semua 1.080 baris dibuat lokal dengan seed tetap. Bobot kelompok dan taksonomi sengaja disusun untuk menguji fitur; bukan pola yang ditemukan dalam data masyarakat. Tidak ada kesimpulan substantif MBG dari simulasi ini.
+2. **“Bagaimana Anda mengetahui usia dan seberapa baik modelnya?”**
+   Demo tidak memprediksi usia. Label kelompok ditentukan saat generasi data, gaya bahasa tidak bergantung pada kelompok. Model penelitian dan gold set belum tersedia untuk diverifikasi; kami tidak mengklaim Macro-F1 atau confidence. Bahkan evaluasi pada anotasi manusia tidak membuktikan usia asli.
+3. **“Apa yang harus dilakukan sebelum sistem dipakai untuk kebijakan?”**
+   Validasi sumber, ID unik, cakupan, duplikasi, prediksi, evaluasi terpisah, peta topik bersama dan privasi bukti. Perbandingan memakai proporsi dalam kelompok, bukan sekadar volume. Verifikasi eksternal tetap perlu; percakapan daring tidak representatif dan tidak membuktikan sebab atau dampak kebijakan.

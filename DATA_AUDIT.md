@@ -49,12 +49,18 @@ No analytical artifact qualifies as REAL_AND_VALIDATED or REAL_BUT_UNVALIDATED. 
 - Generational labels estimate text-associated categories; they do not recover true ages. Gold-set agreement does not establish demographic accuracy.
 - Social media volume is not population prevalence. Relative prominence is not policy impact; coincident events are not causal proof.
 
-## Implemented public states
+## 2.0 update — authorized synthetic demonstration
 
-REAL: six-category selection, contextual hypothesis drawer, comparison selectors and guards, method/audit panel, local API, guided demo.
+The Human Lead authorized synthetic fixtures for interface demonstration. `scripts/generate_demo_data.py` now creates 1,080 unique records with seed 190726. They are not new research evidence. No real analytical artifact has been found or validated.
 
-PREVIEW: the entire analytical dashboard. Four issue names are PPT hypotheses, with no rank or attribution to any group. Selecting a group changes the viewing context only.
+| Artifact | Status | Permitted interpretation |
+|---|---|---|
+| Synthetic fixture, counts, comparisons and example references | REAL_AND_VALIDATED as software fixtures only | Deterministic calculations and UI behavior; not a scientific finding |
+| Eight-topic taxonomy and arbitrary group weights | Illustration | Not a discovered topic model or observed demographic pattern |
+| Real predictions, topic outputs, evaluation and source comments | MISSING | Real-data mode remains locked |
 
-UNAVAILABLE: predicted distributions, topic rankings/keywords/counts, real comment evidence, numerical contrasts, platform/month filters, Macro-F1, trends, aggregate export. Disabled/omitted until supporting evidence is available.
+Current public UI: functional simulation of distribution, ranking, comparisons, heatmap, filtered examples and export. Persistent “MODE SIMULASI — DATA SINTETIS” labels, per-comment provenance and a methods dialog separate it from actual results. All chart figures derive from generated fixture rows. 434,463 remains attributed to the competition brief only.
 
-Next evidence gate: obtain the five source CSVs plus classification and topic outputs in an authorized private location; validate schema, unique IDs, duplicates, coverage, label vocabulary, ranks, references and totals offline. Redact examples before publication. Agree on the six submission labels before transforming them. Do not manually enter plausible counts into public JSON. The current preview must not be switched to an analysis state without implementing and testing that data contract.
+The comments in the PPT's illustrations are not reused as research evidence. Text is authored from a shared synthetic pool independent of demographic labels. There are no social-media identities or real quotes. Documented generation details and denominator definitions: DATA_SCHEMA.md.
+
+Next scientific gate: obtain the five source CSVs plus classification and topic outputs in an authorized private location; validate schema, unique IDs, duplicates, coverage, vocabulary, ranks, references and totals offline, then review evaluation and privacy. Register a separate real source only after evidence review. Never manually enter plausible real counts or evaluate a model using these synthetic labels.

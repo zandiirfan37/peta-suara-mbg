@@ -16,6 +16,7 @@ data/
 !static/data/
 static/data/*
 !static/data/dashboard.json
+!static/data/demo.json
 PPT_GEMASTIK19_MBG_v5.pptx
 *:Zone.Identifier
 evidence/

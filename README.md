@@ -1,63 +1,67 @@
-# PETA SUARA MBG
+# PETA SUARA MBG 2.0
 
-Interactive companion to GEMASTIK 19 PPT v5, Universitas Airlangga. Lightweight Flask + Gunicorn + local CSS/JavaScript; no CDN, model API, training, or external assets at runtime.
+Interactive GEMASTIK 19 jury demo: **Kenali suara. Pahami prioritas.**
 
-**Current release: evidence-aware preview.** The repository contains the presentation but no source CSVs, predictions, topic outputs, or evaluation reports. Dataset size 434,463 is attributed to the brief. All analytical counts are unavailable, not zero. See [DATA_AUDIT.md](DATA_AUDIT.md).
+Production: https://peta-suara-mbg.onrender.com/ — existing service and hostname preserved. GitHub: https://github.com/zandiirfan37/peta-suara-mbg, branch `main`.
 
-## Present in one minute
+## Scientific disclosure
 
-1. Open the existing submitted production URL and allow Render's cold start.
-2. Click **Gen Z**: selected group updates topic context and comparison A.
-3. Click **Keamanan pangan**: inspect the PPT hypothesis and verification plan, then Escape.
-4. Choose **Non-individual** as comparison B: the dashboard explains why numerical comparison requires evidence.
-5. Optional **Lihat kesiapan bukti** reveals methods and missing artifacts. **Mulai demo 60 detik** provides a manual guide.
+**MODE SIMULASI — DATA SINTETIS.** All 1,080 comments, dates, platform assignments, category assignments and scenario differences are generated fixtures, not scraped data or competition results. Taxonomy is illustrative; labels are not inferred ages. No trained classifier, Macro-F1, confidence, causal or policy-performance claim is made. The 434,463 total is separately identified in the methodology dialog as a competition-brief figure, never as records processed.
 
-Exact dialogue, timing, grounded jury answers, and fallback: [DEMO_SCRIPT.md](DEMO_SCRIPT.md). Do not present this as completed analytics.
+The real-analysis mode is disabled: no validated source outputs exist. [DATA_AUDIT.md](DATA_AUDIT.md) records the PPT and original evidence audit. [DATA_SCHEMA.md](DATA_SCHEMA.md) documents source separation and future integration.
 
-## Feature states
+## Three analytical clicks
 
-| Working now | Scientific state |
-|---|---|
-| Six-category selector, contextual topic panel | PREVIEW: no group distributions |
-| Four PPT hypothesis / verification drawers | PREVIEW: no measured ranks, keywords or source comments |
-| Two comparison selectors and same-group guard | UNAVAILABLE: numeric comparison disabled |
-| Methods, denominator definition, evidence matrix | REAL: source-attributed documentation |
-| Four-step demo guide, Escape / close / focus return | REAL: interface behavior |
-| Platform / month filters, trend, export | UNAVAILABLE: intentionally omitted without data |
+1. **Gen Z** in Peta kelompok: all eight topic ranks update; comparison A follows.
+2. **Mutu & variasi menu**: a dialog shows matching synthetic comments with SIM-ID, platform, date, group and topic. Close with × or Escape.
+3. **Bandingkan dengan Non-individual**: compare within-group topic proportions, with calculated A − B percentage-point differences and the largest contrast.
 
-The hypotheses are identical for all groups; selection is context, not evidence of group interest. True age cannot be verified from comment text alone.
+Use **Mulai Demo 60 Detik** for presentation mode: header controls/metrics collapse, an in-flow guided toolbar supports Next/Back/Restart/Exit. It does not autoplay or scroll on its own; “Lihat area” is an explicit navigation action. Full script and jury Q&A: [DEMO_SCRIPT.md](DEMO_SCRIPT.md).
 
-## Run locally
+## Working features
+
+- Six-group distribution chart; selected states and All control.
+- Eight ranked topic bars with exact counts and within-group percentages.
+- Two-group diverging comparison, zero-denominator and same-group guards.
+- Six × eight intensity matrix; click a cell to select both group and topic.
+- Platform and July/August/September filters update KPIs, charts, denominators and evidence together. Topic/search selection affects evidence without changing comparison denominators.
+- Evidence dialog and explorer: 3/5 samples, previous/next, search, copy ID and useful empty states.
+- Reset, three-step presenter guide, responsive views, keyboard dialogs and reduced-motion support.
+- CSV aggregate export with synthetic provenance, seed, filter and denominators on every row. No private raw data.
+- Persistent simulation disclosure, separate disabled real mode, transparent methodology and a topic-dependent illustrative policy question.
+
+## Run and verify
 
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
-.venv/bin/gunicorn --bind 127.0.0.1:5067 app:app
-```
-
-Open `http://127.0.0.1:5067/`. Production entrypoint remains `gunicorn app:app`. No paid resource or model initialization is required.
-
-Routes: `/`, `/healthz`, `/api/status`, `/api/dashboard`. Status includes `analysis_available: false`, `mode: preview`, `processed_count: null`, and Render commit when supplied. `/api/dashboard` exposes only small public metadata, never datasets or credentials.
-
-## Verification
-
-```sh
-.venv/bin/python -m py_compile app.py
+python3 scripts/generate_demo_data.py
 .venv/bin/python -m unittest discover -s tests -v
 .venv/bin/gunicorn --check-config app:app
-# Against the already running local server; requires uv and installed Chromium:
-uv run tests/browser_smoke.py --url http://127.0.0.1:5067/ --out evidence/browser
+.venv/bin/gunicorn --bind 127.0.0.1:5067 --workers 1 app:app
 ```
 
-Browser checks cover all six groups, all four hypothesis drawers, modal close / Escape / focus, comparison guards, guided tour, no-JS fallback, console errors and overflow at 1366×768, 1920×1080, 768×1024, 375×812. Set `PLAYWRIGHT_BROWSERS_PATH` if Chromium is stored elsewhere. QA results and screenshots stay untracked under `evidence/`.
+Open http://127.0.0.1:5067/. Production entrypoint remains `gunicorn app:app`. Runtime dependencies remain Flask and Gunicorn; no CDN, model initialization, external API, database, training or paid resource.
 
-## Content and release
+Against the already serving local app:
 
-- `static/data/dashboard.json`: public brief metadata, category definitions and PPT hypothesis plans. Missing scientific values must remain `null`; changing them requires an independently verified data integration.
-- `templates/index.html`, `static/css/dashboard.css`, `static/js/dashboard.js`: interface.
-- `content.json`: legacy preview metadata consumed by `/api/status` for compatibility.
-- Original PPT is local reference only and excluded from Git; do not overwrite it.
+```sh
+uv run tests/browser_smoke.py --out evidence/v2
+```
 
-No analytics-data ingestion is implemented. Audit and preprocess real outputs offline before adding aggregates or redacted evidence; the preview UI will need a verified integration, not just a status toggle.
+Requires the QA-only Playwright package (resolved by uv) and installed Chromium; set `PLAYWRIGHT_BROWSERS_PATH` if needed. No browser download or package is required by the production app. Screenshots/report remain ignored under `evidence/`.
 
-[DEPLOYMENT.md](DEPLOYMENT.md) explains release to the **existing** Render service. Preserve its hostname. Live URL and Auto-Deploy remain unverified until observed.
+QA includes three backend/data tests, 112 filter/group scopes and 576 comparisons against independent Python counts; source ID checks, actual filter interactions, heatmap, evidence pagination/search/copy, reset, dialogs, guide and CSV. Viewports: 1440×900, 1366×768, 1920×1080, 375×812, 812×375 and 768×1024.
+
+## Source layout
+
+- `scripts/generate_demo_data.py`: deterministic seed `190726`, 1,080 unique synthetic records.
+- `static/data/demo.json`: compact committed demo fixture, ~310 KB.
+- `data_source.py`: common-schema validation and explicit source loader; no mixed source kinds.
+- `static/js/analytics.js`: source-neutral, pure count/share/ranking/comparison/evidence functions.
+- `static/js/dashboard.js`: UI state and interactions; all numeric analytics derive from actual fixture rows.
+- `templates/index.html`, `static/css/dashboard.css`: responsive UI with local assets and web-safe typography.
+
+Routes: `/`, `/healthz`, `/api/status`, `/api/dashboard`. Status reports `mode: synthetic`, `synthetic_count: 1080`, real outputs unavailable and Render Git commit when supplied. Dashboard endpoint has `X-Data-Provenance: synthetic`.
+
+Do not modify or publish the reference PPT. Do not enter plausible “real” numbers into demo files. Regeneration changes only the fixture when the generator changes; rerun QA before release. Production JSON loads once at import, so source updates require a deployment of the **same** Render service. See [DEPLOYMENT.md](DEPLOYMENT.md).

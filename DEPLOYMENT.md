@@ -1,66 +1,54 @@
 # Deployment — PETA SUARA MBG
 
-## Current state
+## Stable production target
 
-- Public production URL: **NOT VERIFIED / not supplied to agent**.
+- URL: https://peta-suara-mbg.onrender.com/
+- Health: https://peta-suara-mbg.onrender.com/healthz
 - GitHub: https://github.com/zandiirfan37/peta-suara-mbg
-- Branch: `main`.
-- Render service name and identifier: **not verified**. Human Lead reports hosting was configured manually; it may already be live.
-- Auto-Deploy: **not verified**; blueprint requests On Commit.
-- Deployment status: **DEPLOYMENT_UNVERIFIED** until actual URL and deployed version are checked.
-- Before this dashboard release: `3edc70ebadac4b9761132da8569b64d03d3c023d`.
-- Current source commit: use `git rev-parse HEAD`; final release SHA is reported in the release handoff. Deployed commit remains unknown until `/api/status` confirms it.
+- Branch: `main`
+- Existing service hostname: `peta-suara-mbg.onrender.com`; internal Render service ID unavailable to agent.
+- Baseline verified before 2.0: `/api/status` returned HTTP 200 and commit `b477ad4be719d81cd473114919a44bc3a3ab6867`.
+- 2.0 source release: final commit SHA is in the release handoff and `git rev-parse HEAD`. Live deployed commit is exposed by `/api/status.version`.
+- Auto-Deploy setting: blueprint requests On Commit; dashboard setting cannot be directly inspected without authenticated Render access. An observed automatic version change after push supports trigger behavior, but does not independently verify the dashboard setting.
 
-**Never delete/recreate the existing service, change hostname, provision another service, or switch to a paid plan.** The submitted URL must remain stable.
+**Reuse this service. Never delete/recreate it, alter the hostname or enable a paid instance.**
 
-## Existing service configuration
+## Configuration retained
 
-| Field | Required configuration |
+| Field | Value |
 |---|---|
-| Type / plan | Python Web Service / Free |
-| GitHub repository | `zandiirfan37/peta-suara-mbg` |
-| Branch | `main` |
-| Root directory | Repository root (blank) |
+| Runtime / plan | Python 3 / Free |
+| Repository | `zandiirfan37/peta-suara-mbg` |
+| Branch / root | `main` / repository root (blank) |
 | Build | `pip install -r requirements.txt` |
 | Start | `gunicorn app:app` |
-| Python | `PYTHON_VERSION=3.12.12` as in existing blueprint |
+| Python variable | `PYTHON_VERSION=3.12.12` |
 | Health path | `/healthz` |
-| Auto-Deploy | On Commit |
+| Auto-Deploy intended | On Commit |
 
-No changes to dependencies or hosting configuration are needed for the dashboard. Flask imports only a compact public metadata JSON; no full dataset or model is loaded. CSS/JS are served from the same app. Source PPT, screenshots, private datasets, and credentials are excluded from publication.
+No runtime dependency added. One compact synthetic fixture loads at import; count/share calculations use 1,080 rows in the browser. Assets are local, no CDN or online model required. App imports its explicit synthetic source, does no training or inference, and cannot enable real mode from a query parameter.
 
-## Verification and recovery
+## Release and overnight updates
 
-The agent has authenticated GitHub but no Render browser tool, Render CLI/API credentials, or access to the Human Lead's authenticated Chrome session. Public GitHub deployments, commit statuses, checks and homepage metadata did not reveal a production URL during this audit. No URL was guessed or new service created.
+1. Work on a feature branch; preserve existing `main` until checks pass.
+2. If changing scenarios, run `python3 scripts/generate_demo_data.py`.
+3. Run unittest, Gunicorn config check, browser QA and inspect screenshots as in README.
+4. Inspect staged files: only public application code, synthetic fixtures and documentation. PPT, private datasets, `.env`, keys and QA artifacts stay excluded.
+5. Commit, fast-forward main, push once to `origin/main`.
+6. Check the existing public service and version after Render finishes building.
 
-Human/student: open the **existing** Render service → Settings, verify the repository, branch and **Auto-Deploy: On Commit**. After the release push, inspect Events/Logs for the release commit. If Auto-Deploy is off, use **Manual Deploy → Deploy latest commit** in that same service, then enable On Commit if appropriate. Use Free only. Copy the actual HTTPS URL to the agent for external verification. Do not share credentials.
+Keep the same URL overnight. Do not edit files on Render as a persistence strategy; commit changes to GitHub. To roll back a bad deployment, use the existing service's previous successful deployment; do not replace the service.
 
-Live acceptance (substitute the actual service origin):
+## Public acceptance
 
-```sh
-curl --fail --show-error --max-time 120 "$ACTUAL_URL/"
-curl --fail --show-error --max-time 120 "$ACTUAL_URL/healthz"
-curl --fail --show-error --max-time 120 "$ACTUAL_URL/api/status"
-curl --fail --show-error --max-time 120 "$ACTUAL_URL/api/dashboard"
-```
+Check `/`, `/healthz`, `/api/status`, `/api/dashboard`, CSS and both JS files for HTTP 200. Expect `mode: synthetic`, `synthetic_count: 1080`, `analysis_available: false`, `real_data_available: false`, `processed_count: null`, and the release commit. Homepage must show MODE SIMULASI — DATA SINTETIS. Check Gen Z → menu → Non-individual, filter propagation and real-mode lock in a browser.
 
-Expect 200, PETA SUARA MBG dashboard, health `status: ok`, preview metadata, and `/api/status.version` matching the release commit. Also check CSS/JS, group selection and hypothesis dialog in the public browser. A working older landing page or an issued hostname alone does not verify this release. A pending build is PENDING, not LIVE.
+If current version remains older, the 2.0 release is PENDING/UNVERIFIED, not LIVE UPDATED. Human/student: in the existing Render service inspect Events/Logs and Settings → Auto-Deploy. If needed, select **Manual Deploy → Deploy latest commit** in the same service. No credentials in chat.
 
-If build/runtime fails, inspect Render logs. Preserve the existing service and URL; use its prior successful deployment as rollback if needed. Fix the failure on a feature branch and retest before publishing again.
+## Free operation and limits
 
-## Overnight updates
+Free instances can sleep while idle and need a cold start. Open the submitted URL before presenting; wait for complete load. Filesystem writes are not durable storage. Check Render dashboard for current free usage and build limits. No paid resource is authorized. Reference: https://render.com/docs/free.
 
-Use a feature branch. Edit only intended public files. Run backend and browser checks in README, inspect the diff and ensure raw data/secrets are absent. Merge a verified release into `main`, then `git push origin main`. Do not push unfinished work to production.
+## Scientific boundary
 
-JSON metadata is read once when the app imports; deploy/restart through the existing service after changes. Do not edit the Render filesystem as a content store. Future analytical data needs a separate offline validation and UI integration before leaving preview mode.
-
-## Free-tier operation
-
-Free hosting can sleep when idle, producing a cold start. Open the submitted URL ahead of the presentation and wait for the dashboard to load. Local writes are not durable storage. Check the service dashboard for current free usage limits and build/runtime status. No paid resources are authorized. See [Render Free](https://render.com/docs/free).
-
-## Known blockers
-
-1. Actual production URL, service ID, deploy status and Auto-Deploy setting are unavailable to the agent.
-2. No source comments, predictions, topic outputs, gold set or evaluation evidence; analytic results remain unavailable.
-
-Presenter guide: [DEMO_SCRIPT.md](DEMO_SCRIPT.md). Evidence audit: [DATA_AUDIT.md](DATA_AUDIT.md).
+All data in 2.0 is synthetic with persistent provenance. No competition processing total, Macro-F1 or real analytical result is implied. Real source registration, validation, privacy review and source-aware mode activation are separate future work; see DATA_SCHEMA.md. Presenter dialogue: DEMO_SCRIPT.md.
