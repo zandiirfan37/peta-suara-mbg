@@ -1,0 +1,26 @@
+{
+  "mode": "preview",
+  "source": "Brief kompetisi dan PPT v5; bukan keluaran analisis",
+  "dataset": {"brief_count": 434463, "processed_count": null, "period": "Juli–September 2026", "platforms": ["Twitter/X", "Instagram", "YouTube"]},
+  "groups": [
+    {"id":"boomers","name":"Baby Boomers","years":"1946–1964","count":null},
+    {"id":"gen-x","name":"Gen X","years":"1965–1980","count":null},
+    {"id":"millennials","name":"Millennials","years":"1981–1996","count":null},
+    {"id":"gen-z","name":"Gen Z","years":"1997–2012","count":null},
+    {"id":"alpha","name":"Gen Alpha","years":"2013–2024","count":null},
+    {"id":"non-individual","name":"Non-individual","years":"Media · institusi · organisasi","count":null}
+  ],
+  "questions": [
+    {"id":"food-safety","title":"Keamanan pangan","question":"Apakah kekhawatiran terkait insiden yang terverifikasi?","verify":"Data Dinkes dan audit SOP SPPG","action":"Verifikasi insiden sebelum menyimpulkan kebutuhan tanggap cepat.","source":"PPT v5, slide 11 · contoh hipotesis","keywords":null,"count":null,"rank":null,"examples":[]},
+    {"id":"menu","title":"Mutu & variasi menu","question":"Apakah keluhan menyangkut variasi, mutu, atau kecukupan gizi?","verify":"Umpan balik sekolah dan penilaian ahli gizi","action":"Pisahkan pengalaman langsung dari opini sebelum evaluasi menu.","source":"PPT v5, slide 11 · contoh hipotesis","keywords":null,"count":null,"rank":null,"examples":[]},
+    {"id":"media","title":"Pemberitaan & pengalaman","question":"Apakah pemberitaan sejalan dengan pengalaman penerima manfaat?","verify":"Perbandingan Non-individual dan individu; sumber komentar asli","action":"Periksa sumber percakapan sebelum membuat pesan klarifikasi.","source":"PPT v5, slide 11 · contoh hipotesis","keywords":null,"count":null,"rank":null,"examples":[]},
+    {"id":"distribution","title":"Distribusi layanan","question":"Di mana layanan perlu diperiksa lebih lanjut?","verify":"Data operasional SPPG dan konfirmasi Pemda","action":"Gunakan data operasional; komentar saja tidak menetapkan lokasi masalah.","source":"PPT v5, slide 11 · contoh hipotesis","keywords":null,"count":null,"rank":null,"examples":[]}
+  ],
+  "audit": [
+    {"asset":"Brief & rancangan metode","status":"PARTIAL","detail":"Narasi tersedia di PPT v5; bukan bukti model sudah dijalankan."},
+    {"asset":"Lima CSV sumber","status":"MISSING","detail":"part_0.csv–part_4.csv tidak tersedia dalam project."},
+    {"asset":"Prediksi enam kategori","status":"MISSING","detail":"Jumlah, proporsi, dan identitas penulis belum dapat diverifikasi."},
+    {"asset":"Topik & ID sumber","status":"MISSING","detail":"Peringkat, kata kunci, frekuensi, dan kutipan belum tersedia."},
+    {"asset":"Gold set & Macro-F1","status":"MISSING","detail":"Tidak ada label uji atau laporan evaluasi untuk memverifikasi skor."}
+  ]
+}

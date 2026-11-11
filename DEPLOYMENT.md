@@ -1,66 +1,66 @@
 # Deployment — PETA SUARA MBG
 
-## Current verified state
+## Current state
 
-- Public HTTPS URL: **NONE — no Render service or URL has been verified by this agent**.
-- GitHub repository: https://github.com/zandiirfan37/peta-suara-mbg
-- Render service identifier: **NONE — requires authenticated Render access**.
-- Intended service name: `peta-suara-mbg` (use a suffix only if unavailable).
-- Deployment branch: `main`.
-- Recovered application commit: `4337b82e91252634aad5b696ac486de12085f7b9`; confirmed on GitHub `main` during recovery.
-- Runtime: Python 3.12.12.
-- Plan: **Free only**.
-- Build: `pip install -r requirements.txt`.
-- Start: `gunicorn app:app`.
-- Health check: `/healthz`.
-- Auto deploy: configured as `commit` in `render.yaml`; **not yet verified in Render**.
+- Public production URL: **NOT VERIFIED / not supplied to agent**.
+- GitHub: https://github.com/zandiirfan37/peta-suara-mbg
+- Branch: `main`.
+- Render service name and identifier: **not verified**. Human Lead reports hosting was configured manually; it may already be live.
+- Auto-Deploy: **not verified**; blueprint requests On Commit.
+- Deployment status: **DEPLOYMENT_UNVERIFIED** until actual URL and deployed version are checked.
+- Before this dashboard release: `3edc70ebadac4b9761132da8569b64d03d3c023d`.
+- Current source commit: use `git rev-parse HEAD`; final release SHA is reported in the release handoff. Deployed commit remains unknown until `/api/status` confirms it.
 
-## Human action needed: create service through connected GitHub
+**Never delete/recreate the existing service, change hostname, provision another service, or switch to a paid plan.** The submitted URL must remain stable.
 
-1. Open https://dashboard.render.com and check for an existing suitable PETA SUARA MBG service before creating one. Reuse it if present.
-2. The Human Lead has already logged into Render through GitHub and is on **Create a new Service**. Select **Web Services → New Web Service → Git Provider → GitHub**, then connect `zandiirfan37/peta-suara-mbg`. If the repository is missing, configure the GitHub connection to grant Render access to this repository. Select it through the connected provider, rather than entering a public Git URL. No repeat Render login is needed.
-3. Name `peta-suara-mbg`; branch `main`; language Python 3; region Singapore; root directory blank.
-4. Build command `pip install -r requirements.txt`; start command `gunicorn app:app`; instance type **Free**.
-5. Set health check path `/healthz`, environment variable `PYTHON_VERSION=3.12.12`, and Auto-Deploy **On Commit** in advanced settings or service Settings.
-6. Click **Deploy Web Service**. Wait for the deployment to become Live and inspect logs for failures.
-7. Copy the actual HTTPS URL shown by Render and share it with the agent for live verification. Record the actual service ID and URL here after verification. Never infer the URL from the name.
+## Existing service configuration
 
-Alternatively use New → Blueprint with the connected GitHub repository to apply `render.yaml`; inspect that the proposed web service plan is Free before deploying.
+| Field | Required configuration |
+|---|---|
+| Type / plan | Python Web Service / Free |
+| GitHub repository | `zandiirfan37/peta-suara-mbg` |
+| Branch | `main` |
+| Root directory | Repository root (blank) |
+| Build | `pip install -r requirements.txt` |
+| Start | `gunicorn app:app` |
+| Python | `PYTHON_VERSION=3.12.12` as in existing blueprint |
+| Health path | `/healthz` |
+| Auto-Deploy | On Commit |
 
-## Recovery verification — 2026-11-11
+No changes to dependencies or hosting configuration are needed for the dashboard. Flask imports only a compact public metadata JSON; no full dataset or model is loaded. CSS/JS are served from the same app. Source PPT, screenshots, private datasets, and credentials are excluded from publication.
 
-Existing application preserved. Python syntax, Flask import, Gunicorn `app:app` import, homepage title, and HTTP 200 for all three routes passed locally; both API routes returned JSON. GitHub repository is public and remote `main` matched the recovered application commit. No browser automation tool or accessible authenticated Chrome session is available to the agent; no Render CLI, standard CLI configuration, or Render environment credentials were found. Render service existence, deployment status, actual hostname, and Auto-Deploy setting therefore remain unverified. The next action is the manual service connection/deployment above, followed by sharing Render's actual HTTPS URL for external verification.
+## Verification and recovery
 
-## Overnight updates — preserve the same URL
+The agent has authenticated GitHub but no Render browser tool, Render CLI/API credentials, or access to the Human Lead's authenticated Chrome session. Public GitHub deployments, commit statuses, checks and homepage metadata did not reveal a production URL during this audit. No URL was guessed or new service created.
 
-Edit `content.json` for text and `templates/index.html` for the homepage. Change `app.py` only for route behavior. Do not add private datasets or credentials.
+Human/student: open the **existing** Render service → Settings, verify the repository, branch and **Auto-Deploy: On Commit**. After the release push, inspect Events/Logs for the release commit. If Auto-Deploy is off, use **Manual Deploy → Deploy latest commit** in that same service, then enable On Commit if appropriate. Use Free only. Copy the actual HTTPS URL to the agent for external verification. Do not share credentials.
 
-```sh
-.venv/bin/python -m py_compile app.py
-.venv/bin/python -c 'from app import app; c=app.test_client(); assert all(c.get(p).status_code == 200 for p in ["/", "/healthz", "/api/status"])'
-git add app.py content.json templates/index.html requirements.txt render.yaml README.md DEPLOYMENT.md PROJECT_STATE.md .gitignore
-git commit -m "Update public preview content"
-git push origin main
-```
-
-Keep the existing Render service and its hostname. Deploy future commits to that service. Do not delete/recreate the service or change its assigned domain after submitting the PPT.
-
-## Verify a successful deployment
-
-In Render, confirm the latest deploy is **Live**, its commit matches GitHub `main`, and Settings → Auto-Deploy is **On Commit**. Inspect build and runtime logs.
-
-Use the actual Render URL in place of ACTUAL_URL:
+Live acceptance (substitute the actual service origin):
 
 ```sh
-curl --fail --show-error --max-time 120 https://ACTUAL_URL/healthz
-curl --fail --show-error --max-time 120 https://ACTUAL_URL/
-curl --fail --show-error --max-time 120 https://ACTUAL_URL/api/status
+curl --fail --show-error --max-time 120 "$ACTUAL_URL/"
+curl --fail --show-error --max-time 120 "$ACTUAL_URL/healthz"
+curl --fail --show-error --max-time 120 "$ACTUAL_URL/api/status"
+curl --fail --show-error --max-time 120 "$ACTUAL_URL/api/dashboard"
 ```
 
-Check HTTP 200, homepage text `PETA SUARA MBG`, and `/api/status` version matching the deployed commit. The health endpoint reports process health; analysis remains unavailable by design during preview.
+Expect 200, PETA SUARA MBG dashboard, health `status: ok`, preview metadata, and `/api/status.version` matching the release commit. Also check CSS/JS, group selection and hypothesis dialog in the public browser. A working older landing page or an issued hostname alone does not verify this release. A pending build is PENDING, not LIVE.
 
-## Free tier limitations
+If build/runtime fails, inspect Render logs. Preserve the existing service and URL; use its prior successful deployment as rollback if needed. Fix the failure on a feature branch and retest before publishing again.
 
-Render Free services sleep after 15 minutes without inbound traffic. A request starts the service again, usually taking about one minute. Open the submitted URL shortly before the presentation. Local filesystem changes are ephemeral; commit content updates to GitHub. Free instance hours, bandwidth, and build limits can suspend service or block builds. No paid resources are authorized.
+## Overnight updates
 
-Official references: https://render.com/docs/deploy-flask, https://render.com/docs/blueprint-spec, https://render.com/docs/free.
+Use a feature branch. Edit only intended public files. Run backend and browser checks in README, inspect the diff and ensure raw data/secrets are absent. Merge a verified release into `main`, then `git push origin main`. Do not push unfinished work to production.
+
+JSON metadata is read once when the app imports; deploy/restart through the existing service after changes. Do not edit the Render filesystem as a content store. Future analytical data needs a separate offline validation and UI integration before leaving preview mode.
+
+## Free-tier operation
+
+Free hosting can sleep when idle, producing a cold start. Open the submitted URL ahead of the presentation and wait for the dashboard to load. Local writes are not durable storage. Check the service dashboard for current free usage limits and build/runtime status. No paid resources are authorized. See [Render Free](https://render.com/docs/free).
+
+## Known blockers
+
+1. Actual production URL, service ID, deploy status and Auto-Deploy setting are unavailable to the agent.
+2. No source comments, predictions, topic outputs, gold set or evaluation evidence; analytic results remain unavailable.
+
+Presenter guide: [DEMO_SCRIPT.md](DEMO_SCRIPT.md). Evidence audit: [DATA_AUDIT.md](DATA_AUDIT.md).

@@ -1,35 +1,32 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{ content.subtitle }} — {{ content.context }}">
-  <title>{{ content.title }} | {{ content.context }}</title>
-  <style>
-    :root{color-scheme:light;--ink:#172c35;--muted:#50636c;--line:#dce6e6;--accent:#12685d;--paper:#f5f8f7}
-    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
-    .wrap{max-width:1120px;margin:auto;padding:0 28px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;border-bottom:1px solid var(--line)}.brand{font-weight:800;letter-spacing:.04em;font-size:15px}.context{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.1em}.hero{padding:82px 0 54px;max-width:860px}.badge{display:inline-block;border:1px solid #b4cec8;border-radius:99px;padding:7px 14px;font-size:12px;font-weight:650;color:#19594e;background:#eaf4ef}.eyebrow{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:30px 0 14px}h1{font-size:clamp(42px,7vw,78px);letter-spacing:-.055em;line-height:1.08;margin:0 0 22px;font-weight:800}h2{font-size:clamp(21px,3vw,30px);line-height:1.35;font-weight:500;letter-spacing:-.02em;margin:0 0 20px}.description{max-width:690px;font-size:18px;color:var(--muted);margin:0}.notice{background:white;border:1px solid var(--line);border-left:4px solid var(--accent);padding:24px 28px;border-radius:12px;margin-bottom:44px}.notice h3{font-size:16px;margin:0 0 6px}.notice p{margin:0;color:var(--muted);max-width:860px}.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-bottom:65px}.principle{padding-top:20px;border-top:1px solid #b8ccc7}.number{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.12em}.principle h3{font-size:17px;margin:12px 0 8px}.principle p{font-size:15px;color:var(--muted);margin:0}footer{padding:24px 0 30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:12px}a{color:var(--accent);text-underline-offset:4px;display:inline-flex;align-items:center;min-height:44px}a:hover{color:var(--ink)}a:focus-visible{outline:3px solid var(--accent);outline-offset:5px}footer span{align-self:center}@media(max-width:640px){.wrap{padding:0 20px}.hero{padding:48px 0 36px}.principles{grid-template-columns:1fr;gap:24px;margin-bottom:40px}.notice{padding:20px}.description{font-size:16px}header{padding:20px 0}.brand{font-size:12px}.context{font-size:11px}footer{flex-direction:column;gap:4px}footer span{align-self:flex-start}}
-  </style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Peta percakapan publik tentang MBG. Prototipe transparan untuk menghubungkan kelompok, isu, dan bukti.">
+  <title>PETA SUARA MBG · GEMASTIK 19</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23156058'/%3E%3Cpath d='M10 28V18M20 28V9M30 28V14' stroke='white' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/dashboard.css') }}">
+  <script id="dashboard-data" type="application/json">{{ dashboard|tojson }}</script>
+  <script defer src="{{ url_for('static',filename='js/dashboard.js') }}"></script>
 </head>
 <body>
-<div class="wrap">
-  <header><span class="brand">{{ content.title }}</span><span class="context">{{ content.context }}</span></header>
-  <main>
-    <section class="hero" aria-labelledby="title">
-      <span class="badge">{{ content.status }}</span>
-      <p class="eyebrow">{{ content.subtitle }}</p>
-      <h1 id="title">{{ content.title }}</h1>
-      <h2>{{ content.headline }}</h2>
-      <p class="description">{{ content.description }}</p>
-    </section>
-    <section class="notice" aria-labelledby="preview-title"><h3 id="preview-title">Tentang preview ini</h3><p>{{ content.notice }}</p></section>
-    <section class="principles" aria-label="Prinsip proyek">
-      {% for principle in content.principles %}
-      <article class="principle"><span class="number">0{{ loop.index }}</span><h3>{{ principle.title }}</h3><p>{{ principle.text }}</p></article>
-      {% endfor %}
-    </section>
+<a class="skip" href="#main">Ke konten utama</a>
+<div class="page">
+  <header class="masthead"><a class="brand" href="/" aria-label="PETA SUARA MBG, beranda"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true"><path d="M3 25V15M13 25V3M23 25V10" stroke="currentColor" stroke-width="5"/></svg><span>PETA SUARA <b>MBG</b></span></a><span class="edition">GEMASTIK 19 <span> / </span> PENAMBANGAN DATA</span><button id="start-demo" class="primary" hidden>Mulai demo 60 detik <span aria-hidden="true">↗</span></button></header>
+  <main id="main">
+    <section class="intro"><div><p class="eyebrow">PUBLIC VOICE RADAR / UNIVERSITAS AIRLANGGA</p><h1>Siapa yang bicara,<br>apa yang perlu didengar?</h1><p class="dek">Siapa yang bicara, apa yang dibicarakan, dan apa yang perlu ditindaklanjuti?</p></div><aside class="context"><span class="status">PREVIEW · ANALISIS BELUM TERSEDIA</span><div class="stats"><div><strong>434.463</strong><span>komentar dalam brief</span></div><div><strong>—</strong><span>diproses terverifikasi</span></div></div><p>Juli–September 2026 · X, Instagram, YouTube</p><small>Ukuran dataset menurut brief; jumlah aktual belum diaudit.</small></aside></section>
+    <div class="integrity"><strong>Prediksi ≠ identitas.</strong> Generasi adalah estimasi model dari teks, bukan usia penulis yang terverifikasi. Belum ada hasil prediksi yang dimuat.</div>
+    <section id="guide" class="guide" hidden aria-label="Panduan demo"><div><span class="eyebrow" id="guide-step"></span><p id="guide-copy"></p></div><button id="guide-next" class="primary">Lanjut →</button><button id="guide-exit" class="plain">Keluar demo</button></section>
+    <section id="who" class="who"><div class="section-heading"><h2><span>01 / WHO</span> Pilih kelompok</h2><p>Enam target klasifikasi · jumlah & proporsi belum tersedia</p></div><div class="groups" role="group" aria-label="Kelompok prediksi">{% for group in dashboard.groups %}<button class="group" data-group="{{ group.id }}" aria-pressed="false"><span class="group-name">{{ group.name }}</span><span class="years">{{ group.years }}</span><span class="group-count">— <small>belum tersedia</small></span></button>{% endfor %}</div></section>
+    <div class="workspace">
+      <section id="what" class="topic-panel"><div class="section-heading"><h2><span>02 / WHAT</span> Topik & bukti</h2><span class="chip" id="selected-group">Pilih kelompok</span></div><div class="empty-summary" aria-live="polite"><strong id="topic-state">Pilih kelompok untuk menelusuri kesiapan topik.</strong><p>Tidak ada frekuensi atau kata kunci hasil model. Jelajahi pertanyaan verifikasi dari PPT di bawah.</p></div><div class="list-heading"><span>HIPOTESIS DALAM PPT · BUKAN TEMUAN</span><span>BUKA RENCANA BUKTI ↗</span></div><div class="question-list">{% for q in dashboard.questions %}<button class="question" data-question="{{ q.id }}"><span><b>{{ q.title }}</b><small>{{ q.question }}</small></span><span aria-hidden="true">↗</span></button>{% endfor %}</div></section>
+      <section id="compare" class="compare-panel"><div class="section-heading"><h2><span>03 / CONTRAST</span> Bandingkan prioritas</h2></div><div class="comparison-selects"><label>Kelompok A<select id="compare-a"><option value="" selected>Pilih kelompok A</option>{% for g in dashboard.groups %}<option value="{{ g.id }}">{{ g.name }}</option>{% endfor %}</select></label><span aria-hidden="true">↔</span><label>Kelompok B<select id="compare-b"><option value="" selected>Pilih pembanding</option>{% for g in dashboard.groups %}<option value="{{ g.id }}">{{ g.name }}</option>{% endfor %}</select></label></div><div class="comparison-state" aria-live="polite"><span class="chip warning">BELUM DAPAT DIHITUNG</span><h3 id="comparison-title">Dua kelompok, satu peta topik</h3><p id="comparison-copy">Pilih dua kelompok untuk melihat kesiapan perbandingan. Perhitungan menunggu prediksi dan penugasan topik terverifikasi.</p><button class="disabled-action" disabled>Hitung perbedaan · data belum tersedia</button></div><details class="denominator"><summary>Cara membaca perbandingan</summary><p>Porsi topik = komentar pada topik ÷ seluruh komentar berprediksi di kelompok yang sama, termasuk yang belum mendapat topik. Selisih A − B dinyatakan dalam poin persentase. Tidak dihitung jika penyebut nol atau data belum tersedia. Perlu satu peta topik global yang sama.</p></details></section>
+    </div>
+    <section class="takeaway"><span class="eyebrow">SO WHAT / DARI SINYAL KE VERIFIKASI</span><p>Ramai dibicarakan belum berarti terbukti.<br><strong>Telusuri komentar. Bandingkan konteks. Verifikasi ke sumber terkait.</strong></p><button id="audit-open" class="outline">Lihat kesiapan bukti →</button></section>
+    <details id="methods" class="methods"><summary>Metode, keterbatasan & kesiapan bukti <span>Rancangan dari PPT v5</span></summary><div class="method-grid"><article><h3>Task 1 · estimasi kelompok</h3><p>Rencana: label perak melalui weak supervision; bandingkan baseline, TF-IDF, embedding beku, IndoBERT, dan ensemble. Evaluasi Macro-F1 pada gold set terpisah. Model final, gold set, dan skor belum tersedia.</p></article><article><h3>Task 2 · peta topik bersama</h3><p>Rencana: bandingkan NMF, LDA, LSA+KMeans, dan e5+HDBSCAN; nilai koherensi NPMI, silhouette, dan stabilitas. Keluaran: 5–10 kata kunci dan 3 ID sumber per topik. Belum ada keluaran terverifikasi.</p></article><article><h3>Batas interpretasi</h3><p>Gaya bahasa bukan bukti usia. Hasil anotasi manusia pun bukan identitas asli. Percakapan daring tidak mewakili seluruh masyarakat; tren tidak membuktikan sebab atau dampak kebijakan.</p></article></div><table><caption>Ketersediaan artefak dalam project</caption><thead><tr><th>Artefak</th><th>Status</th><th>Catatan</th></tr></thead><tbody>{% for item in dashboard.audit %}<tr><td>{{ item.asset }}</td><td><span class="chip">{{ item.status }}</span></td><td>{{ item.detail }}</td></tr>{% endfor %}</tbody></table></details>
+    <noscript><p class="integrity">JavaScript tidak aktif. Ringkasan, metode, dan status bukti tetap dapat dibaca; pemilihan kelompok dan panel bukti membutuhkan JavaScript.</p></noscript>
   </main>
-  <footer><span>{{ content.title }} · {{ content.context }}</span><a href="/api/status">Status aplikasi</a></footer>
+  <footer><span>Indra Gantz · Universitas Airlangga <span class="footer-divider">/</span> Prototipe pendamping PPT v5</span><a href="/api/status">Status aplikasi ↗</a></footer>
 </div>
-</body>
-</html>
+<dialog id="evidence" aria-labelledby="evidence-title"><div class="dialog-heading"><span class="eyebrow">EVIDENCE EXPLORER</span><button id="close-evidence" class="outline" aria-label="Tutup panel bukti">Tutup ×</button></div><span class="chip warning">HIPOTESIS PPT · BUKAN HASIL MODEL</span><h2 id="evidence-title"></h2><p id="evidence-group" class="eyebrow"></p><p id="evidence-question" class="dialog-lead"></p><dl><dt>Sumber rancangan</dt><dd id="evidence-source"></dd><dt>Rencana verifikasi</dt><dd id="evidence-verify"></dd><dt>Langkah setelah bukti tersedia</dt><dd id="evidence-action"></dd></dl><div class="evidence-empty"><strong>Belum ada komentar sumber terverifikasi.</strong><p>ID, platform, tanggal, kutipan, prediksi, kata kunci, frekuensi, dan peringkat belum tersedia. Tidak ada contoh rekaan yang ditampilkan.</p></div><p class="dialog-note">Hipotesis ini sama untuk semua kelompok. Memilih kelompok tidak membuktikan kelompok tersebut membicarakan isu ini.</p></dialog>
+</body></html>
