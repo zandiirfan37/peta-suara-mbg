@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ content.subtitle }} — {{ content.context }}">
+  <title>{{ content.title }} | {{ content.context }}</title>
+  <style>
+    :root{color-scheme:light;--ink:#172c35;--muted:#50636c;--line:#dce6e6;--accent:#12685d;--paper:#f5f8f7}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+    .wrap{max-width:1120px;margin:auto;padding:0 28px}header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;border-bottom:1px solid var(--line)}.brand{font-weight:800;letter-spacing:.04em;font-size:15px}.context{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.1em}.hero{padding:82px 0 54px;max-width:860px}.badge{display:inline-block;border:1px solid #b4cec8;border-radius:99px;padding:7px 14px;font-size:12px;font-weight:650;color:#19594e;background:#eaf4ef}.eyebrow{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:30px 0 14px}h1{font-size:clamp(42px,7vw,78px);letter-spacing:-.055em;line-height:1.08;margin:0 0 22px;font-weight:800}h2{font-size:clamp(21px,3vw,30px);line-height:1.35;font-weight:500;letter-spacing:-.02em;margin:0 0 20px}.description{max-width:690px;font-size:18px;color:var(--muted);margin:0}.notice{background:white;border:1px solid var(--line);border-left:4px solid var(--accent);padding:24px 28px;border-radius:12px;margin-bottom:44px}.notice h3{font-size:16px;margin:0 0 6px}.notice p{margin:0;color:var(--muted);max-width:860px}.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-bottom:65px}.principle{padding-top:20px;border-top:1px solid #b8ccc7}.number{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.12em}.principle h3{font-size:17px;margin:12px 0 8px}.principle p{font-size:15px;color:var(--muted);margin:0}footer{padding:24px 0 30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;color:var(--muted);font-size:12px}a{color:var(--accent);text-underline-offset:4px;display:inline-flex;align-items:center;min-height:44px}a:hover{color:var(--ink)}a:focus-visible{outline:3px solid var(--accent);outline-offset:5px}footer span{align-self:center}@media(max-width:640px){.wrap{padding:0 20px}.hero{padding:48px 0 36px}.principles{grid-template-columns:1fr;gap:24px;margin-bottom:40px}.notice{padding:20px}.description{font-size:16px}header{padding:20px 0}.brand{font-size:12px}.context{font-size:11px}footer{flex-direction:column;gap:4px}footer span{align-self:flex-start}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header><span class="brand">{{ content.title }}</span><span class="context">{{ content.context }}</span></header>
+  <main>
+    <section class="hero" aria-labelledby="title">
+      <span class="badge">{{ content.status }}</span>
+      <p class="eyebrow">{{ content.subtitle }}</p>
+      <h1 id="title">{{ content.title }}</h1>
+      <h2>{{ content.headline }}</h2>
+      <p class="description">{{ content.description }}</p>
+    </section>
+    <section class="notice" aria-labelledby="preview-title"><h3 id="preview-title">Tentang preview ini</h3><p>{{ content.notice }}</p></section>
+    <section class="principles" aria-label="Prinsip proyek">
+      {% for principle in content.principles %}
+      <article class="principle"><span class="number">0{{ loop.index }}</span><h3>{{ principle.title }}</h3><p>{{ principle.text }}</p></article>
+      {% endfor %}
+    </section>
+  </main>
+  <footer><span>{{ content.title }} · {{ content.context }}</span><a href="/api/status">Status aplikasi</a></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "title": "PETA SUARA MBG",
+  "subtitle": "Platform Analitik Percakapan Publik",
+  "context": "GEMASTIK 19",
+  "status": "Preview / Analysis in Progress",
+  "headline": "Memahami percakapan. Mendengarkan publik.",
+  "description": "Ruang eksplorasi percakapan publik tentang program Makan Bergizi Gratis (MBG), dengan pendekatan analitik yang transparan dan bertanggung jawab.",
+  "notice": "Halaman ini merupakan preview proyek. Pengolahan data dan analisis sedang dipersiapkan. Hasil analisis belum tersedia untuk ditampilkan.",
+  "principles": [
+    {"title": "Konteks yang jelas", "text": "Memahami percakapan publik dengan memperhatikan sumber, waktu, dan konteks data."},
+    {"title": "Analisis yang transparan", "text": "Metode, cakupan data, dan keterbatasan akan disertakan bersama hasil analisis."},
+    {"title": "Interpretasi yang hati-hati", "text": "Percakapan daring tidak serta-merta mewakili pendapat seluruh masyarakat."}
+  ]
+}
