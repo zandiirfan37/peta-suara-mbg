@@ -2,11 +2,12 @@
 
 ## Current verified state
 
-- Public HTTPS URL: **NONE — Render service not created or verified**.
+- Public HTTPS URL: **NONE — no Render service or URL has been verified by this agent**.
 - GitHub repository: https://github.com/zandiirfan37/peta-suara-mbg
 - Render service identifier: **NONE — requires authenticated Render access**.
 - Intended service name: `peta-suara-mbg` (use a suffix only if unavailable).
 - Deployment branch: `main`.
+- Recovered application commit: `4337b82e91252634aad5b696ac486de12085f7b9`; confirmed on GitHub `main` during recovery.
 - Runtime: Python 3.12.12.
 - Plan: **Free only**.
 - Build: `pip install -r requirements.txt`.
@@ -17,7 +18,7 @@
 ## Human action needed: create service through connected GitHub
 
 1. Open https://dashboard.render.com and check for an existing suitable PETA SUARA MBG service before creating one. Reuse it if present.
-2. Otherwise select **New → Web Service → Git Provider → GitHub**. Authenticate GitHub as `zandiirfan37` and grant Render access to `peta-suara-mbg`. Select that repository through the connected provider, rather than entering a public Git URL.
+2. The Human Lead has already logged into Render through GitHub and is on **Create a new Service**. Select **Web Services → New Web Service → Git Provider → GitHub**, then connect `zandiirfan37/peta-suara-mbg`. If the repository is missing, configure the GitHub connection to grant Render access to this repository. Select it through the connected provider, rather than entering a public Git URL. No repeat Render login is needed.
 3. Name `peta-suara-mbg`; branch `main`; language Python 3; region Singapore; root directory blank.
 4. Build command `pip install -r requirements.txt`; start command `gunicorn app:app`; instance type **Free**.
 5. Set health check path `/healthz`, environment variable `PYTHON_VERSION=3.12.12`, and Auto-Deploy **On Commit** in advanced settings or service Settings.
@@ -25,6 +26,10 @@
 7. Copy the actual HTTPS URL shown by Render and share it with the agent for live verification. Record the actual service ID and URL here after verification. Never infer the URL from the name.
 
 Alternatively use New → Blueprint with the connected GitHub repository to apply `render.yaml`; inspect that the proposed web service plan is Free before deploying.
+
+## Recovery verification — 2026-11-11
+
+Existing application preserved. Python syntax, Flask import, Gunicorn `app:app` import, homepage title, and HTTP 200 for all three routes passed locally; both API routes returned JSON. GitHub repository is public and remote `main` matched the recovered application commit. No browser automation tool or accessible authenticated Chrome session is available to the agent; no Render CLI, standard CLI configuration, or Render environment credentials were found. Render service existence, deployment status, actual hostname, and Auto-Deploy setting therefore remain unverified. The next action is the manual service connection/deployment above, followed by sharing Render's actual HTTPS URL for external verification.
 
 ## Overnight updates — preserve the same URL
 
